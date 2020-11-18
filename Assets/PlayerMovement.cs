@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 5;
-        turnSpeed = 5;
+        speed = 3;
+        turnSpeed = 8;
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(moveHorizontal != 0 || moveVertical != 0){
             angle = Mathf.Atan2 (moveHorizontal, moveVertical) * Mathf.Rad2Deg; 
-            transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (new Vector3 (-90, angle, 0)), Time.deltaTime * turnSpeed);
+            transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (new Vector3 (0, angle, 0)), Time.deltaTime * turnSpeed);
 
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             
