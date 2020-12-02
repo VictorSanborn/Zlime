@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     public int turnSpeed;
     public float speed;
     public Vector3 rotation;
-    public float velocity;
     private Vector3 Target;
     private float target;
     private float angle;
@@ -16,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 3;
-        turnSpeed = 8;
+        // speed = 5;
+        // turnSpeed = 4;
     }
 
     // Update is called once per frame
@@ -36,5 +35,10 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log(test + " : " + angle);
             transform.Translate (movement * speed  * Time.deltaTime, Space.World); //* turnSpeed -(transform.rotation / angle)
         }
+    }
+
+     private void OnTriggerEnter(Collider other)
+    {
+        speed = 0;
     }
 }
