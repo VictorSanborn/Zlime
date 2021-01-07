@@ -5,39 +5,56 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private NavMeshAgent agent;
+    private Rigidbody rb;
     public int turnSpeed;
     public float speed;
     public Vector3 rotation;
+    public float jumpHeight;
     private Vector3 Target;
     private float target;
     private float angle;
+    private Vector3 currentVelocity;
+    private float jumpCooldown;
+    private bool isGrounded;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        rb = gameObject.GetComponent<Rigidbody>();
+        jumpCooldown = 0;
     }
 
     // Update is called once per frame
-    void Update(){ 
-        agent.updatePosition = true;
-        agent.updateRotation = true;
 
+    void FixedUpdate(){
         float moveHorizontal = Input.GetAxisRaw ("Horizontal");
         float moveVertical = Input.GetAxisRaw ("Vertical");
 
-        if(Input.GetKey(KeyCode.Space)) CalcJump();
-        if(moveHorizontal != 0 || moveVertical != 0){
-            CalcRotation(moveHorizontal, moveVertical);
-                    
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-         
+        if (isGrounded){
+            if(Input.GetKey(KeyCode.Space)) CalcJump(rb.transform.forward);
+            if(moveHorizontal != 0 || moveVertical != 0){ 
+                CalcRotation(moveHorizontal, moveVertical); 
+                Vector3 pos = rb.transform.position;
+                rb.transform.Translate(Vector3.forward * speed * Time.deltaTime);           
+                currentVelocity =  rb.transform.position - pos;
+            }
+            else currentVelocity = new Vector3(0,0,0);
         }
-        
 
+        //GetComponent<Animator>().SetFloat("forwardSpeed", (Mathf.Abs(currentVelocity.x) + Mathf.Abs(currentVelocity.z)) * 200);
     }
+    void OnCollisionStay(Collision col){ 
+        if(col.contacts[0].normal.y >= 0.6f){
+            isGrounded = true;
+        }
+    }
+
+    void OnCollisionExit(Collision col){
+        isGrounded = false;
+    }
+
     public void CalcRotation(float moveH, float moveV){
 
         Vector3 camForward = Camera.main.transform.forward;
@@ -56,13 +73,15 @@ public class PlayerMovement : MonoBehaviour
             
     }
 
-    public void CalcJump(){
-        agent.updatePosition = false;
-        agent.updateRotation = false;
-        agent.transform.position = new Vector3(agent.transform.position.x, transform.position.y, agent.transform.position.z);
-        Debug.Log("desired_velocity: " + agent.desiredVelocity.ToString());
-        Debug.Log("destination: " + agent.destination.ToString());
-        transform.position += new Vector3(0,1* Time.deltaTime,0);
+    public void CalcJump(Vector3 direction){
+        jumpCooldown -= 1*Time.deltaTime;
+        if (jumpCooldown <= 0){
+            rb.AddForce(Vector3.up * 240);
+            rb.AddForce(direction * (50 * speed));
+
+            jumpCooldown = (float)0.10;
+        }
+
     }
     
 }

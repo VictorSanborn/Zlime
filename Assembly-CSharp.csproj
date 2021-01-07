@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\CustomCamera.cs" />
+     <Compile Include="Assets\Script\CustomCamera_2.cs" />
      <Compile Include="Assets\Script\FollowPlayer.cs" />
      <Compile Include="Assets\Script\PlayerMovement.cs" />
      <Compile Include="Assets\Script\UnitMovement.cs" />
