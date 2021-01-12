@@ -10,12 +10,12 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public Vector3 rotation;
     public float jumpHeight;
+    public bool isGrounded;
     private Vector3 Target;
     private float target;
     private float angle;
     private Vector3 currentVelocity;
     private float jumpCooldown;
-    private bool isGrounded;
 
 
 
@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
 
     void FixedUpdate(){
+
+        checkCollision();
+
         float moveHorizontal = Input.GetAxisRaw ("Horizontal");
         float moveVertical = Input.GetAxisRaw ("Vertical");
 
@@ -45,14 +48,15 @@ public class PlayerMovement : MonoBehaviour
 
         //GetComponent<Animator>().SetFloat("forwardSpeed", (Mathf.Abs(currentVelocity.x) + Mathf.Abs(currentVelocity.z)) * 200);
     }
-    void OnCollisionStay(Collision col){ 
-        if(col.contacts[0].normal.y >= 0.6f){
-            isGrounded = true;
-        }
-    }
+    void checkCollision(){
 
-    void OnCollisionExit(Collision col){
         isGrounded = false;
+
+        var collider = GetComponent<CapsuleCollider>();
+        if (Physics.Raycast(transform.position, Vector3.down, collider.bounds.extents.y + 0.1f)) isGrounded = true;
+        else if (Physics.Raycast(transform.position - new Vector3(collider.bounds.extents.x -0.1f, 0, collider.bounds.extents.z -0.1f), Vector3.down, collider.bounds.extents.y + 0.1f)) isGrounded = true;
+        else if (Physics.Raycast(transform.position + new Vector3(collider.bounds.extents.x -0.1f, 0, collider.bounds.extents.z -0.1f), Vector3.down, collider.bounds.extents.y + 0.1f)) isGrounded = true;
+
     }
 
     public void CalcRotation(float moveH, float moveV){
@@ -76,8 +80,11 @@ public class PlayerMovement : MonoBehaviour
     public void CalcJump(Vector3 direction){
         jumpCooldown -= 1*Time.deltaTime;
         if (jumpCooldown <= 0){
-            rb.AddForce(Vector3.up * 240);
-            rb.AddForce(direction * (50 * speed));
+            //rb.AddForce(Vector3.up * 240);
+            rb.velocity = new Vector3(0, jumpHeight, 0);
+
+            rb.velocity += direction * speed;
+            //rb.AddForce(direction * (50 * speed));
 
             jumpCooldown = (float)0.10;
         }
