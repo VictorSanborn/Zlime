@@ -80,12 +80,8 @@ public class PlayerMovement : MonoBehaviour
     public void CalcJump(Vector3 direction){
         jumpCooldown -= 1*Time.deltaTime;
         if (jumpCooldown <= 0){
-            //rb.AddForce(Vector3.up * 240);
             rb.velocity = new Vector3(0, jumpHeight, 0);
-
             rb.velocity += direction * speed;
-            //rb.AddForce(direction * (50 * speed));
-
             jumpCooldown = (float)0.10;
         }
 

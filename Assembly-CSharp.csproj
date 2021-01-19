@@ -36,8 +36,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\CombatTarget.cs" />
      <Compile Include="Assets\Script\CustomCamera.cs" />
-     <Compile Include="Assets\Script\Enemy.cs" />
+     <Compile Include="Assets\Script\Debug\CastVisualization.cs" />
      <Compile Include="Assets\Script\FollowPlayer.cs" />
      <Compile Include="Assets\Script\PlayerCombat.cs" />
      <Compile Include="Assets\Script\PlayerMovement.cs" />

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat : CombatTarget
 {
     // Start is called before the first frame update
     public Weapon activeSlot;

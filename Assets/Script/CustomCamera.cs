@@ -15,7 +15,7 @@ public class CustomCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(transform.position.x,height,transform.position.z);
+        transform.position = new Vector3(transform.position.x, targetTransform.position.y + height, transform.position.z);
         
     }
 
@@ -54,7 +54,7 @@ public class CustomCamera : MonoBehaviour
             //movement.y = 0;
             transform.Translate(movement);
 
-            transform.position = new Vector3(transform.position.x,height,transform.position.z);
+            transform.position = new Vector3(transform.position.x, targetTransform.position.y + height, transform.position.z);
         }
     }
 
@@ -68,7 +68,7 @@ public class CustomCamera : MonoBehaviour
         //movement.y = 0;
         transform.Translate(movement);
 
-        transform.position = new Vector3(transform.position.x,height,transform.position.z);
+        transform.position = new Vector3(transform.position.x, targetTransform.position.y + height, transform.position.z);
 
     }
 }
