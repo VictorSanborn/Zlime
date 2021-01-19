@@ -5,7 +5,9 @@ using UnityEngine;
 public class CustomCamera : MonoBehaviour
 {
     [SerializeField] Transform targetTransform;
-    public float allowedDistance;
+    public float maxZoom;
+    public float minZoom;
+    public float currentZoom;
     public float speed;
     public float height;
     public float rotationSpeed;
@@ -15,7 +17,7 @@ public class CustomCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(transform.position.x, targetTransform.position.y + height, transform.position.z);
+        transform.position = new Vector3(targetTransform.position.x, targetTransform.position.y + height, targetTransform.position.z);
         
     }
 
@@ -33,12 +35,12 @@ public class CustomCamera : MonoBehaviour
             rotate(-rotationSpeed);
         }
 
-        if (Input.GetKey(KeyCode.Y) && allowedDistance < 25){
-            allowedDistance = allowedDistance + zoomSpeed * Time.deltaTime; 
+        if (Input.GetKey(KeyCode.Y) && currentZoom < maxZoom){
+            currentZoom = currentZoom + zoomSpeed * Time.deltaTime; 
             zoom(zoomSpeed);
         }
-        else if (Input.GetKey(KeyCode.H) && allowedDistance > 2){
-            allowedDistance = allowedDistance - zoomSpeed * Time.deltaTime; 
+        else if (Input.GetKey(KeyCode.H) && currentZoom > minZoom){
+            currentZoom = currentZoom - zoomSpeed * Time.deltaTime; 
         }
     }
 
@@ -48,9 +50,16 @@ public class CustomCamera : MonoBehaviour
 
         float distance = Vector3.Distance (transform.position, targetPosition);
 
-        if (distance > allowedDistance){
+        if (distance > currentZoom){
 
             Vector3 movement = Vector3.forward * speed * Time.deltaTime;
+            //movement.y = 0;
+            transform.Translate(movement);
+
+            transform.position = new Vector3(transform.position.x, targetTransform.position.y + height, transform.position.z);
+        } else if (distance < currentZoom){
+
+            Vector3 movement = Vector3.back * speed * Time.deltaTime;
             //movement.y = 0;
             transform.Translate(movement);
 

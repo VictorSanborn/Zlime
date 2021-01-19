@@ -336,7 +336,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 1792770478}
-  allowedDistance: 6
+  maxZoom: 20
+  minZoom: 5
+  currentZoom: 7.5
   speed: 5
   height: 2
   rotationSpeed: 6
