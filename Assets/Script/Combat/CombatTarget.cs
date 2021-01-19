@@ -8,7 +8,6 @@ public class CombatTarget : MonoBehaviour
     public float health;
     void Start()
     {
-        health = 25;
         GetComponentInChildren<TextMesh>().text = health.ToString();
     }
 

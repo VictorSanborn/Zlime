@@ -508,6 +508,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40f508b3e951fdd48804d2163f5516b4, type: 3}
+--- !u!1 &1142744793 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6918529543978005393, guid: 06f59f438aa8b5b42bb7ff7df4c50beb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6918529542549046477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1142744799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142744793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a02ac89dae99743951fbe03eadb24c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRadius: 50
 --- !u!1 &1257371351 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 40f508b3e951fdd48804d2163f5516b4,
@@ -614,7 +633,7 @@ GameObject:
   - component: {fileID: 1792770479}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -739,6 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0008eef85cd8f3e49afdc842b0c58fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   damageStat: 0
 --- !u!1001 &2084306587
 PrefabInstance:
@@ -875,6 +895,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6918529543978005421, guid: 06f59f438aa8b5b42bb7ff7df4c50beb,
+        type: 3}
+      propertyPath: health
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f59f438aa8b5b42bb7ff7df4c50beb, type: 3}
