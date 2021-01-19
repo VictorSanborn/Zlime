@@ -36,14 +36,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\CombatTarget.cs" />
-     <Compile Include="Assets\Script\CustomCamera.cs" />
+     <Compile Include="Assets\Script\AI\UnitMovement.cs" />
+     <Compile Include="Assets\Script\Combat\CombatTarget.cs" />
      <Compile Include="Assets\Script\Debug\CastVisualization.cs" />
-     <Compile Include="Assets\Script\FollowPlayer.cs" />
-     <Compile Include="Assets\Script\PlayerCombat.cs" />
-     <Compile Include="Assets\Script\PlayerMovement.cs" />
+     <Compile Include="Assets\Script\Player\CustomCamera.cs" />
+     <Compile Include="Assets\Script\Player\FollowPlayer.cs" />
+     <Compile Include="Assets\Script\Player\PlayerCombat.cs" />
+     <Compile Include="Assets\Script\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Script\Text\LookAtCamera.cs" />
-     <Compile Include="Assets\Script\UnitMovement.cs" />
      <Compile Include="Assets\Script\Weapons\Sword.cs" />
      <Compile Include="Assets\Script\Weapons\Weapon.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
